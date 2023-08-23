@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Product from "../components/Product";
+import { Link } from "react-router-dom";
 
 const Homepage = () => {
 
@@ -22,26 +24,43 @@ const Homepage = () => {
     getProducts();
   }, []);
 
+
   return (
     <div>
-      <div className="mt-5">
+      <div>
+        <Link to="/create/" className="mt-4 shadow-md bg-blue-700">
+          Create a Product
+        </Link>
+      </div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
         {isLoading ? (
           "Loading"
         ) : (
           <>
-          {products.length > 0 ? (
-            <>{
-            products.map(product, index) =>
-            
-            </>
-          )}
-        }
+            {products.length > 0 ? (
+              <>
+                {products.map((product, index) => {
+                  return (
+                    <Product
+                      key={index}
+                      product={product}
+                      getProducts={getProducts}
+                    />
+                  );
+                })}
+              </>
+            ) : (
+              <div className="mt-4 bg-gray-800 text-white font-serif p-4">
+                There is no product
+              </div>
+            )}
           </>
-        )
-        }
+        )}
       </div>
+
+
     </div>
-  )
-}
+  );
+};
 
 export default Homepage;
