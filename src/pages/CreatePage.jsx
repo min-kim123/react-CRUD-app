@@ -34,6 +34,7 @@ const CreatePage = () => {
       return;
     } try {
       setIsLoading(true);
+      
       await axios.post("http://localhost:8000/api/products", {
         name: name,
         slug: slug,
@@ -42,12 +43,13 @@ const CreatePage = () => {
         rating: rating,
         numReviews: numReviews,
         description: description,
-        quantiy: quantity,
+        quantity: quantity,
         price: price,
         image: image,
       });
       setIsLoading(false);
       navigate("/");
+      console.log("submitted");
     } catch(error) {
       console.log(error);
     }
