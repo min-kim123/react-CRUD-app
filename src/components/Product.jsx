@@ -10,8 +10,8 @@ const Product = ({product}) => {
         <h2 >Quantity: {product.quantity} </h2>
         <h2 className="text">Price: ${product.price} </h2>
         <div>
-          <Link className="inline-block w-full text-center shadow-md text-sm bg-gray-700 text-white rounded-sm px-4 py-1 font-bold hover:bg-gray-600 hover:cursor-pointer"to={`/edit`}>Edit</Link>
-          <Link className="inline-block w-full text-center shadow-md text-sm bg-red-700 text-white rounded-sm px-4 py-1 font-bold hover:bg-red-600 hover:cursor-pointer"to={`/edit`}>Delete</Link>
+          <Link to={`/edit/${product._id}`} className="inline-block w-full text-center shadow-md text-sm bg-gray-700 text-white rounded-sm px-4 py-1 font-bold hover:bg-gray-600 hover:cursor-pointer">Edit</Link>
+          <Link to={`/edit`} className="inline-block w-full text-center shadow-md text-sm bg-red-700 text-white rounded-sm px-4 py-1 font-bold hover:bg-red-600 hover:cursor-pointer">Delete</Link>
 
         </div>
       </div>
