@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const EditPage = () => {
   let { id } = useParams();
@@ -13,13 +13,15 @@ const EditPage = () => {
     price: "",
     image: "",
   });
+
   const getProduct = async () => {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/products${id}`
+        `http://localhost:8000/api/products/${id}`
       );
       setProduct({
+        //replace original values instead of changing them
         name: response.data.name,
         slug: response.data.slug,
         category: response.data.category,
@@ -31,12 +33,18 @@ const EditPage = () => {
         price: response.data.price,
         image: response.data.image,
       });
-    } catch (error) {}
+      setIsLoading(false);
+    } catch (error) {
+      setIsLoading(false);
+      alert(error);
+    }
   };
 
-  const updateProduct = async () => {
+  const updateProduct = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
     try {
-      await axios.put(`http://localhost:8000/api/products${id}`, product);
+      await axios.put(`http://localhost:8000/api/products/${id}`, product);
       alert("Product updated");
       navigate("/");
     } catch (error) {
@@ -44,6 +52,10 @@ const EditPage = () => {
       alert(error);
     }
   };
+
+  useEffect(() => {
+    getProduct();
+  }, []);
 
   return (
     <div>
@@ -68,9 +80,9 @@ const EditPage = () => {
               <label>Slug</label>
               <input
                 type="text"
-                value={product.Slug}
+                value={product.slug}
                 onChange={(e) =>
-                  setProduct({ ...product, Slug: e.target.value })
+                  setProduct({ ...product, slug: e.target.value })
                 }
                 placeholder="Enter Name"
               />
@@ -79,7 +91,7 @@ const EditPage = () => {
               <label>Category</label>
               <input
                 type="text"
-                value={product.name}
+                value={product.category}
                 onChange={(e) =>
                   setProduct({ ...product, name: e.target.value })
                 }
@@ -90,7 +102,7 @@ const EditPage = () => {
               <label>Brand</label>
               <input
                 type="text"
-                value={product.name}
+                value={product.brand}
                 onChange={(e) =>
                   setProduct({ ...product, name: e.target.value })
                 }
@@ -101,7 +113,7 @@ const EditPage = () => {
               <label>Rating</label>
               <input
                 type="text"
-                value={product.name}
+                value={product.rating}
                 onChange={(e) =>
                   setProduct({ ...product, name: e.target.value })
                 }
@@ -112,7 +124,7 @@ const EditPage = () => {
               <label>NumReviews</label>
               <input
                 type="text"
-                value={product.name}
+                value={product.numReviews}
                 onChange={(e) =>
                   setProduct({ ...product, name: e.target.value })
                 }
@@ -134,7 +146,7 @@ const EditPage = () => {
               <label>Quantity</label>
               <input
                 type="text"
-                value={product.name}
+                value={product.quantity}
                 onChange={(e) =>
                   setProduct({ ...product, name: e.target.value })
                 }
@@ -145,7 +157,7 @@ const EditPage = () => {
               <label>Price</label>
               <input
                 type="text"
-                value={product.name}
+                value={product.price}
                 onChange={(e) =>
                   setProduct({ ...product, name: e.target.value })
                 }
@@ -156,14 +168,14 @@ const EditPage = () => {
               <label>Image</label>
               <input
                 type="text"
-                value={product.name}
+                value={product.image}
                 onChange={(e) =>
                   setProduct({ ...product, name: e.target.value })
                 }
                 placeholder="Enter Name"
               />
             </div>
-            
+
             <div>
               <button>Submit</button>
             </div>
