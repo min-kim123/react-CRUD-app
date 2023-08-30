@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Product from "../components/Product";
 import { Link } from "react-router-dom";
+import { VITE_API_URL } from "../App";
 
 const Homepage = () => {
 
@@ -11,7 +12,7 @@ const Homepage = () => {
   const getProducts = async() => {
     try {
       setIsLoading(true);
-      const response = await axios.get("http://localhost:8000/api/products/");
+      const response = await axios.get(`${VITE_API_URL}/api/products/`);
       console.log(response.data);
       setProducts(response.data);
       setIsLoading(false);

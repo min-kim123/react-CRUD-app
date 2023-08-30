@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { VITE_API_URL } from "../App";
 const CreatePage = () => {
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
@@ -35,7 +35,7 @@ const CreatePage = () => {
     } try {
       setIsLoading(true);
       
-      await axios.post("http://localhost:8000/api/products", {
+      await axios.post(`${VITE_API_URL}/api/products/`, {
         name: name,
         slug: slug,
         category: category,

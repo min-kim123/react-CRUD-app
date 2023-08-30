@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { VITE_API_URL } from "../App";
 
 const EditPage = () => {
   let { id } = useParams();
@@ -18,7 +19,7 @@ const EditPage = () => {
     setIsLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:8000/api/products/${id}`
+        `${VITE_API_URL}/api/products/${id}`
       );
       setProduct({
         //replace original values instead of changing them
@@ -44,7 +45,7 @@ const EditPage = () => {
     e.preventDefault();
     setIsLoading(true);
     try {
-      await axios.put(`http://localhost:8000/api/products/${id}`, product);
+      await axios.put(`${VITE_API_URL}/api/products/${id}`, product);
       alert("Product updated");
       navigate("/");
     } catch (error) {

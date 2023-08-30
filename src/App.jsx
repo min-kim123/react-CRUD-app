@@ -3,6 +3,8 @@ import HomePage from "./pages/HomePage";
 import CreatePage from "./pages/CreatePage";
 import EditPage from "./pages/EditPage";
 
+export const VITE_API_URL = import.meta.env.VITE_API_URL;
+
 const App = () => {
   return (
     <div>
