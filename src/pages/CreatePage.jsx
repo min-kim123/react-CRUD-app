@@ -1,7 +1,8 @@
-import axios from "axios";
 import { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { VITE_API_URL } from "../App";
+
 const CreatePage = () => {
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
@@ -13,10 +14,12 @@ const CreatePage = () => {
   const [quantity, setQuantity] = useState("");
   const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
+
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
-  const saveProduct = async(e) => {
+  const saveProduct = async (e) => {
+    alert("a");
     e.preventDefault();
     if (
       name === "" ||
@@ -32,10 +35,10 @@ const CreatePage = () => {
     ) {
       alert("Please fill out all input completely");
       return;
-    } try {
+    }
+    try {
       setIsLoading(true);
-      
-      await axios.post(`${VITE_API_URL}/api/products/`, {
+      const response = await axios.post(`${VITE_API_URL}/api/products`, {
         name: name,
         slug: slug,
         category: category,
@@ -47,11 +50,13 @@ const CreatePage = () => {
         price: price,
         image: image,
       });
+      alert(response)
+      alert('p')
+
       setIsLoading(false);
       navigate("/");
-      console.log("submitted");
-    } catch(error) {
-      console.log(error);
+    } catch (error) {
+      setIsLoading(false);
     }
   };
 
@@ -73,7 +78,7 @@ const CreatePage = () => {
             <input
               type="text"
               value={slug}
-              onChange={(e) => setSlug(e.target.slug)}
+              onChange={(e) => setSlug(e.target.value)}
             ></input>
           </div>
           <div>
@@ -140,10 +145,7 @@ const CreatePage = () => {
               onChange={(e) => setImage(e.target.value)}
             ></input>
           </div>
-          <div>
-            { !isLoading && (<button>Save</button>)}
-            
-          </div>
+          <div>{!isLoading && <button>Save</button>}</div>
         </div>
       </form>
     </div>

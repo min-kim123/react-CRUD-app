@@ -12,7 +12,7 @@ const Homepage = () => {
   const getProducts = async() => {
     try {
       setIsLoading(true);
-      const response = await axios.get(`${VITE_API_URL}/api/products/`);
+      const response = await axios.get(`${VITE_API_URL}/api/products`);
       console.log(response.data);
       setProducts(response.data);
       setIsLoading(false);
@@ -22,7 +22,9 @@ const Homepage = () => {
   }
 
   useEffect(()=> {
+
     getProducts();
+
   }, []);
 
 

@@ -136,7 +136,7 @@ const EditPage = () => {
               <label>Description</label>
               <input
                 type="text"
-                value={product.name}
+                value={product.description}
                 onChange={(e) =>
                   setProduct({ ...product, name: e.target.value })
                 }
