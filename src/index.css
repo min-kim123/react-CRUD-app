@@ -3,6 +3,6 @@
 @tailwind utilities;
 @layer base{
   body{
-    @apply bg-cyan-200;
+    @apply bg-blue-100;
   }
 }

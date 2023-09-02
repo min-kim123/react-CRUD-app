@@ -1,54 +1,80 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Product from "../components/Product";
-import { Link } from "react-router-dom";
+import Product from "../components/SingleGridProduct";
+
 import { VITE_API_URL } from "../App";
+import TableProduct from "../components/TableProduct";
+import ProductTable from "../components/ProductTable";
 
 const Homepage = () => {
-
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedView, setSelectedView] = useState("table-view");
+  let isTableView = true;
 
-  const getProducts = async() => {
+  const VIEWS = {
+    "table-view": <TableProduct products={products} />,
+  };
+
+  const getProducts = async () => {
     try {
       setIsLoading(true);
       const response = await axios.get(`${VITE_API_URL}/api/products`);
-      console.log(response.data);
       setProducts(response.data);
       setIsLoading(false);
-    } catch (error){
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
 
-  useEffect(()=> {
-
+  useEffect(() => {
+    setIsLoading(true);
     getProducts();
-
+    setIsLoading(false);
   }, []);
-
 
   return (
     <div>
-      <div>
-        <Link to="/create/" className="mt-4 shadow-md bg-blue-700">
-          Create a Product
-        </Link>
-      </div>
+      <label>
+        <select
+          name="view"
+          defaultValue="apple"
+          className="block my-3 py-2 bg-blue-400 rounded-sm text-white font-bold"
+          onChange={(e) => setSelectedView(e.target.value)}
+        >
+          <option value="table-view">Table View</option>
+          <option>Grid View</option>
+        </select>
+      </label>
+
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
         {isLoading ? (
           "Loading"
         ) : (
           <>
-            {products.length > 0 ? (
+            {isTableView ? "l" : "a"}
+            {products.length > 0 /*if there are any products */ ? (
               <>
                 {products.map((product, index) => {
                   return (
-                    <Product
-                      key={index}
-                      product={product}
-                      getProducts={getProducts}
-                    />
+                    <>
+                      <Product
+                        key={index}
+                        product={product}
+                        getProducts={getProducts}
+                      />
+                    </>
+                  );
+                })}
+                {products.map((product, index) => {
+                  return (
+                    <>
+                      <ProductTable
+                        key={index}
+                        product={product}
+                        getProducts={getProducts}
+                      />
+                    </>
                   );
                 })}
               </>
@@ -60,8 +86,8 @@ const Homepage = () => {
           </>
         )}
       </div>
-
-
+      {VIEWS[selectedView]}
+      <TableProduct products={[products, getProducts]} />
     </div>
   );
 };

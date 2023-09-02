@@ -61,8 +61,8 @@ const CreatePage = () => {
   };
 
   return (
-    <div className=" ">
-      <h2 className="block text-center">create a product</h2>
+    <div className="max-w-xl bg-white shadow-lg mx-auto p-7 rounded mt-6">
+      <div className="font-semibold text-xl mb-4 block text-center">New Product</div>
       <form onSubmit={saveProduct}>
         <div className="space-y-2">
           <div>
@@ -71,6 +71,7 @@ const CreatePage = () => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              className="w-full border p-1 text-gray-600 rounded focus:outline-none  focus:border-blue-200"
             ></input>
           </div>
           <div>
@@ -79,6 +80,8 @@ const CreatePage = () => {
               type="text"
               value={slug}
               onChange={(e) => setSlug(e.target.value)}
+              className="w-full border p-1 text-gray-600 rounded focus:outline-none  focus:border-blue-200"
+
             ></input>
           </div>
           <div>
@@ -87,6 +90,7 @@ const CreatePage = () => {
               type="text"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
+              className="w-full border p-1 text-gray-600 rounded focus:outline-none  focus:border-blue-200"
             ></input>
           </div>
           <div>
@@ -95,6 +99,7 @@ const CreatePage = () => {
               type="text"
               value={brand}
               onChange={(e) => setBrand(e.target.value)}
+              className="w-full border p-1 text-gray-600 rounded focus:outline-none  focus:border-blue-200"
             ></input>
           </div>
           <div>
@@ -103,6 +108,7 @@ const CreatePage = () => {
               type="text"
               value={rating}
               onChange={(e) => setRating(e.target.value)}
+              className="w-full border p-1 text-gray-600 rounded focus:outline-none  focus:border-blue-200"
             ></input>
           </div>
           <div>
@@ -111,6 +117,7 @@ const CreatePage = () => {
               type="text"
               value={numReviews}
               onChange={(e) => setNumReviews(e.target.value)}
+              className="w-full border p-1 text-gray-600 rounded focus:outline-none  focus:border-blue-200"
             ></input>
           </div>
           <div>
@@ -119,6 +126,7 @@ const CreatePage = () => {
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
+              className="w-full border p-1 text-gray-600 rounded focus:outline-none  focus:border-blue-200"
             ></input>
           </div>
           <div>
@@ -127,6 +135,7 @@ const CreatePage = () => {
               type="text"
               value={quantity}
               onChange={(e) => setQuantity(e.target.value)}
+              className="w-full border p-1 text-gray-600 rounded focus:outline-none  focus:border-blue-200"
             ></input>
           </div>
           <div>
@@ -135,6 +144,7 @@ const CreatePage = () => {
               type="text"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
+              className="w-full border p-1 text-gray-600 rounded focus:outline-none  focus:border-blue-200"
             ></input>
           </div>
           <div>
@@ -143,9 +153,10 @@ const CreatePage = () => {
               type="text"
               value={image}
               onChange={(e) => setImage(e.target.value)}
+              className="w-full border p-1 text-gray-600 rounded focus:outline-none  focus:border-blue-200"
             ></input>
           </div>
-          <div>{!isLoading && <button>Save</button>}</div>
+          <div>{!isLoading && <button className="w-full block  py-2 bg-blue-400 rounded-sm text-white font-bold">Save</button>}</div>
         </div>
       </form>
     </div>
