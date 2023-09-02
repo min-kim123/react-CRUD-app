@@ -19,7 +19,6 @@ const CreatePage = () => {
   const navigate = useNavigate();
 
   const saveProduct = async (e) => {
-    alert("a");
     e.preventDefault();
     if (
       name === "" ||
@@ -50,8 +49,6 @@ const CreatePage = () => {
         price: price,
         image: image,
       });
-      alert(response)
-      alert('p')
 
       setIsLoading(false);
       navigate("/");

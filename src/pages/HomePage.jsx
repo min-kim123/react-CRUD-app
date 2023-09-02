@@ -1,20 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Product from "../components/SingleGridProduct";
-
 import { VITE_API_URL } from "../App";
-import TableProduct from "../components/TableProduct";
-import ProductTable from "../components/ProductTable";
+import Table from "../components/Table";
+import Grid from "../components/Grid";
 
 const Homepage = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedView, setSelectedView] = useState("table-view");
-  let isTableView = true;
-
-  const VIEWS = {
-    "table-view": <TableProduct products={products} />,
-  };
 
   const getProducts = async () => {
     try {
@@ -27,8 +20,12 @@ const Homepage = () => {
     }
   };
 
+  const VIEWS = {
+    "table-view": <Table products={products} getProducts={getProducts} />,
+    "grid-view": <Grid products={products} getProducts={getProducts} />,
+  };
+
   useEffect(() => {
-    setIsLoading(true);
     getProducts();
     setIsLoading(false);
   }, []);
@@ -43,51 +40,23 @@ const Homepage = () => {
           onChange={(e) => setSelectedView(e.target.value)}
         >
           <option value="table-view">Table View</option>
-          <option>Grid View</option>
+          <option value="grid-view">Grid View</option>
         </select>
       </label>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
-        {isLoading ? (
-          "Loading"
-        ) : (
-          <>
-            {isTableView ? "l" : "a"}
-            {products.length > 0 /*if there are any products */ ? (
-              <>
-                {products.map((product, index) => {
-                  return (
-                    <>
-                      <Product
-                        key={index}
-                        product={product}
-                        getProducts={getProducts}
-                      />
-                    </>
-                  );
-                })}
-                {products.map((product, index) => {
-                  return (
-                    <>
-                      <ProductTable
-                        key={index}
-                        product={product}
-                        getProducts={getProducts}
-                      />
-                    </>
-                  );
-                })}
-              </>
-            ) : (
-              <div className="mt-4 bg-gray-800 text-white font-serif p-4">
-                There is no product
-              </div>
-            )}
-          </>
-        )}
-      </div>
-      {VIEWS[selectedView]}
-      <TableProduct products={[products, getProducts]} />
+      {isLoading ? (
+        "Loading"
+      ) : (
+        <>
+          {products.length > 0 /*if there are any products */ ? (
+            <>{VIEWS[selectedView]}</>
+          ) : (
+            <div className="mt-4 bg-gray-800 text-white font-serif p-4">
+              There is no product
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 };
