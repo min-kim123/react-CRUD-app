@@ -1,13 +1,13 @@
-import GridProduct from "./GridProduct";
+import CardProduct from "./CardProduct";
 
 /* eslint-disable react/prop-types */
-const Grid = ({ products, getProducts }) => {
+const Card = ({ products, getProducts }) => {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-5">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 mt-5 antialiased">
       {products.map((product, index) => {
         return (
           <>
-            <GridProduct
+            <CardProduct
               key={index}
               product={product}
               getProducts={getProducts}
@@ -19,4 +19,4 @@ const Grid = ({ products, getProducts }) => {
   );
 };
 
-export default Grid;
+export default Card;

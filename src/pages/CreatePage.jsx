@@ -8,8 +8,6 @@ const CreatePage = () => {
   const [slug, setSlug] = useState("");
   const [category, setCategory] = useState("");
   const [brand, setBrand] = useState("");
-  const [rating, setRating] = useState("");
-  const [numReviews, setNumReviews] = useState("");
   const [description, setDescription] = useState("");
   const [quantity, setQuantity] = useState("");
   const [price, setPrice] = useState("");
@@ -25,8 +23,6 @@ const CreatePage = () => {
       slug === "" ||
       category === "" ||
       brand === "" ||
-      rating === "" ||
-      numReviews === "" ||
       description === "" ||
       quantity === "" ||
       price === "" ||
@@ -42,8 +38,6 @@ const CreatePage = () => {
         slug: slug,
         category: category,
         brand: brand,
-        rating: rating,
-        numReviews: numReviews,
         description: description,
         quantity: quantity,
         price: price,
@@ -99,24 +93,7 @@ const CreatePage = () => {
               className="w-full border p-1 text-gray-600 rounded focus:outline-none  focus:border-blue-200"
             ></input>
           </div>
-          <div>
-            <label>Rating</label>
-            <input
-              type="text"
-              value={rating}
-              onChange={(e) => setRating(e.target.value)}
-              className="w-full border p-1 text-gray-600 rounded focus:outline-none  focus:border-blue-200"
-            ></input>
-          </div>
-          <div>
-            <label>Number of Reviews</label>
-            <input
-              type="text"
-              value={numReviews}
-              onChange={(e) => setNumReviews(e.target.value)}
-              className="w-full border p-1 text-gray-600 rounded focus:outline-none  focus:border-blue-200"
-            ></input>
-          </div>
+
           <div>
             <label>Description</label>
             <input

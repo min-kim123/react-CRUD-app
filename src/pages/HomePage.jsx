@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { VITE_API_URL } from "../App";
 import Table from "../components/Table";
-import Grid from "../components/Grid";
+import Card from "../components/Card";
 
 const Homepage = () => {
   const [products, setProducts] = useState([]);
@@ -22,12 +22,11 @@ const Homepage = () => {
 
   const VIEWS = {
     "table-view": <Table products={products} getProducts={getProducts} />,
-    "grid-view": <Grid products={products} getProducts={getProducts} />,
+    "card-view": <Card products={products} getProducts={getProducts} />,
   };
 
   useEffect(() => {
     getProducts();
-    setIsLoading(false);
   }, []);
 
   return (
@@ -36,11 +35,11 @@ const Homepage = () => {
         <select
           name="view"
           defaultValue="apple"
-          className="block my-3 py-2 bg-blue-400 rounded-sm text-white font-bold"
+          className="mt-4 block px-2 py-1 border border-gray-300 text-gray-900 text-sm rounded-md"
           onChange={(e) => setSelectedView(e.target.value)}
         >
           <option value="table-view">Table View</option>
-          <option value="grid-view">Grid View</option>
+          <option value="card-view">Card View</option>
         </select>
       </label>
 

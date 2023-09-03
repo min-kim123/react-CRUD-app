@@ -25,8 +25,6 @@ const EditPage = () => {
         slug: response.data.slug,
         category: response.data.category,
         brand: response.data.brand,
-        rating: response.data.rating,
-        numReviews: response.data.numReviews,
         description: response.data.description,
         quantity: response.data.quantity,
         price: response.data.price,
@@ -110,30 +108,6 @@ const EditPage = () => {
                   value={product.brand}
                   onChange={(e) =>
                     setProduct({ ...product, brand: e.target.value })
-                  }
-                  className="w-full border p-1 text-gray-600 rounded focus:outline-none  focus:border-blue-200"
-                  placeholder="Enter Name"
-                />
-              </div>
-              <div>
-                <label>Rating</label>
-                <input
-                  type="text"
-                  value={product.rating}
-                  onChange={(e) =>
-                    setProduct({ ...product, rating: e.target.value })
-                  }
-                  className="w-full border p-1 text-gray-600 rounded focus:outline-none  focus:border-blue-200"
-                  placeholder="Enter Name"
-                />
-              </div>
-              <div>
-                <label>Number of Reviews</label>
-                <input
-                  type="text"
-                  value={product.numReviews}
-                  onChange={(e) =>
-                    setProduct({ ...product, numReviews: e.target.value })
                   }
                   className="w-full border p-1 text-gray-600 rounded focus:outline-none  focus:border-blue-200"
                   placeholder="Enter Name"

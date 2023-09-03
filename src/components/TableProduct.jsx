@@ -16,32 +16,33 @@ const TableProduct = ({ index, product, getProducts }) => {
 
   return (
     <>
-      <tr key={index}>
-        <td className="p-4 border-b ">{product._id}</td>
-        <td className="p-4 border-b ">{product.name}</td>
-        <td className="p-4 border-b ">
-          <img src={product.image} className="w-full" />
+      <tr key={index} className="max-h-10">
+        <td className="p-4 border-b text-sm">
+          <img src={product.image} className="w-full " />
         </td>
-        <td className="p-4 border-b ">{product.slug}</td>
-        <td className="p-4 border-b ">{product.category}</td>
-        <td className="p-4 border-b ">{product.brand}</td>
-        <td className="p-4 border-b ">{product.rating}</td>
-        <td className="p-4 border-b ">{product.numReviews}</td>
-        <td className="p-4 border-b ">{product.description}</td>
-        <td className="p-4 border-b ">{product.quantity}</td>
-        <td className="p-4 border-b ">${product.price}</td>
+        <td  className=" p-4 border-b text-sm">{product.name}</td>
 
-        <td className="p-4 border-b ">
+        <td className="p-4 border-b text-sm">{product.quantity}</td>
+        <td className="p-4 border-b text-sm">${product.price}</td>
+        <td className="p-4 border-b text-sm">{product.slug}</td>
+        <td className="p-4 border-b text-sm">{product.category}</td>
+        <td className="p-4 border-b text-sm">{product.brand}</td>
+        <td className="p-4 border-b text-sm">
+          {product.description}
+        </td>
+        <td className="p-4 border-b text-sm overflow-scroll">{product._id}</td>
+
+        <td className="p-4 border-b text-sm">
           <div className="flex gap-2">
             <Link
               to={`/edit/${product._id}`}
-              className="inline-block text-sm font-semibold text-white px-2 py-1 bg-blue-500 rounded hover:bg-blue-600"
+              className="inline-block text-sm text-white px-2 py-1 bg-gray-300 rounded hover:bg-blue-600"
             >
               Edit
             </Link>
             <button
               onClick={() => deleteProduct(product._id)}
-              className="inline-block text-sm font-semibold text-white px-2 py-1 bg-red-500 rounded hover:bg-red-600"
+              className="inline-block text-sm text-white px-2 py-1 bg-gray-500 rounded hover:bg-red-600"
             >
               Delete
             </button>
